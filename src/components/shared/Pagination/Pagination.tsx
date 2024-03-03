@@ -11,12 +11,20 @@ interface PaginationProps {
   totalPages: number;
   numberOfItems: number;
   path: string;
+  onPageChange: () => void;
 }
 
 export const Pagination: React.FC<PaginationProps> = (
   props: PaginationProps,
 ) => {
-  const { numberOfItems, currentPage, rowsPerPage, totalPages, path } = props;
+  const {
+    numberOfItems,
+    currentPage,
+    rowsPerPage,
+    totalPages,
+    path,
+    onPageChange,
+  } = props;
 
   return (
     <div className="flex justify-center items-center ">
@@ -37,6 +45,7 @@ export const Pagination: React.FC<PaginationProps> = (
                   ? "text-primary border border-primary rounded-sm px-1 py-0.5"
                   : ""
               }`}
+              onClick={onPageChange}
             >
               {pageNumber + 1}
             </Link>
@@ -57,6 +66,7 @@ export const Pagination: React.FC<PaginationProps> = (
               ? "text-primary border border-primary rounded-sm px-1 py-0.5"
               : ""
           }`}
+          onClick={onPageChange}
         >
           {Math.floor(totalPages + 1)}
         </Link>

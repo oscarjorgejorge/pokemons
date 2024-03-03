@@ -7,6 +7,7 @@ import { PokemonCard } from "../shared/PokemonCard";
 import { Search } from "../shared/Search";
 import { Select } from "../shared/Select";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
 
 interface PokemonsProps {
   count: number;
@@ -21,6 +22,8 @@ export const Pokemons = (props: PokemonsProps) => {
 
   const [allPokemons, setAllPokemons] = useState<IPokemon[]>(pokemons);
   const [filteredPokemon, setFilteredPokemon] = useState<IPokemon[]>(pokemons);
+  const [isLoading, setIsLoading] = useState(false);
+  const [gif, setGif] = useState<string>("");
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -31,6 +34,11 @@ export const Pokemons = (props: PokemonsProps) => {
   useEffect(() => {
     setAllPokemons(pokemons);
     setFilteredPokemon(pokemons);
+    setIsLoading(false);
+    setGif(
+      pokemons[Math.floor(Math.random() * pokemons.length)].sprites.other
+        .showdown.front_default,
+    );
   }, [pokemons]);
 
   const handleOnInputChange = (search: string) => {
@@ -39,14 +47,20 @@ export const Pokemons = (props: PokemonsProps) => {
     setFilteredPokemon(
       allPokemons.filter((pokemon) => {
         const regex = new RegExp(search, "i");
-        return regex.test(pokemon.name);
+        return (
+          regex.test(pokemon.name) ||
+          pokemon.evolutions.some((e) => regex.test(e.name))
+        );
       }),
     );
   };
 
   const handleOnSelectChange = (type: "type" | "generation", value: string) => {
+    setIsLoading(true);
     replace(`${pathname}?${type}=${value}`);
   };
+
+  console.log({ pathname });
 
   return (
     <div className="space-y-12">
@@ -73,17 +87,25 @@ export const Pokemons = (props: PokemonsProps) => {
           placeholder="Search pokemons"
         />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-5 gap-6">
-        {filteredPokemon.map((pokemon) => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} />
-        ))}
-      </div>
+      {isLoading && (
+        <div className="w-full flex justify-center">
+          <Image alt="pokemon gif" src={gif} height={100} width={100} />
+        </div>
+      )}
+      {!isLoading && (
+        <div className="grid grid-cols-1 sm:grid-cols-5 gap-6">
+          {filteredPokemon.map((pokemon) => (
+            <PokemonCard key={pokemon.id} pokemon={pokemon} />
+          ))}
+        </div>
+      )}
       <Pagination
         numberOfItems={count}
         currentPage={offset / limit}
         rowsPerPage={limit}
         totalPages={count / limit - 1}
-        path="/pokemons"
+        path={pathname}
+        onPageChange={() => setIsLoading(true)}
       />
     </div>
   );

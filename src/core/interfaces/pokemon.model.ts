@@ -14,5 +14,11 @@ export interface IPokemon {
   generation: string;
   sprites: {
     front_default: string;
+    other: {
+      showdown: {
+        front_default: string;
+      };
+    };
   };
+  evolutions: IPokemon[];
 }

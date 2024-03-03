@@ -5,9 +5,11 @@ import {
   IApiResponse,
   defaultApiParams,
 } from "@/core/interfaces/api_response";
-import { IPokemon } from "@/core/interfaces/pokemon.model";
+import { IPokemon, IPokemonType } from "@/core/interfaces/pokemon.model";
 import { IElement } from "@/core/interfaces/pokemon_small.model";
 import { getPokemonAbility } from "../abilities";
+import { getOnePokemonVersion2 } from "./getOne2";
+import { IType, ITypes } from "@/core/interfaces/type";
 
 export async function getAllPokemons(conditions: IApiParams) {
   const offset = conditions.offset
@@ -36,6 +38,7 @@ async function getPokemonsInfo(pokemonsUrls: string[]): Promise<IPokemon[]> {
                     "name",
                     "types",
                     "sprites.front_default",
+                    "sprites.other.front_default",
                   ),
                   generation,
                 }),
@@ -59,7 +62,20 @@ async function getPokemonsInfo(pokemonsUrls: string[]): Promise<IPokemon[]> {
 
 export async function getPokemonsPaginated(conditions: IApiParams) {
   const pokemons = (await getAllPokemons(conditions)).results;
-  return getPokemonsInfo(pokemons.map((p) => p.url));
+  const promises = pokemons.map((p) => getOnePokemonVersion2(p.url));
+  return Promise.allSettled(promises).then((data) => {
+    return data
+      .map((d) => (d.status === "fulfilled" ? d.value : undefined))
+      .filter(Boolean)
+      .sort((a, b) => {
+        const idA = ((a as IPokemon)?.id || 0) as number;
+        const idB = ((b as IPokemon)?.id || 0) as number;
+        return idA - idB;
+      }) as IPokemon[];
+  });
+
+  // return getOnePokemonVersion2();
+  // return getPokemonsInfo(pokemons.map((p) => p.url));
 }
 
 export async function getAllTypes() {
@@ -78,7 +94,9 @@ export async function getAllGenerations() {
 }
 
 async function getType(idOrName: string) {
-  return Http.get(`/type/${idOrName}`).then((response) => response.data);
+  return Http.get<ITypes>(`/type/${idOrName}`).then(
+    (response) => response.data,
+  );
 }
 
 async function getGeneration(idOrName: string) {
@@ -87,7 +105,21 @@ async function getGeneration(idOrName: string) {
 
 export async function getPokemonsByType(idOrName: string) {
   const type = await getType(idOrName);
-  return getPokemonsInfo(type.pokemon.map((p: any) => p.pokemon.url));
+  console.log({ type: type.pokemon });
+  // return getPokemonsInfo(type.pokemon.map((p: any) => p.pokemon.url));
+  const promises = type.pokemon.map((p: IType) =>
+    getOnePokemonVersion2(p.pokemon.url),
+  );
+  return Promise.allSettled(promises).then((data) => {
+    return data
+      .map((d) => (d.status === "fulfilled" ? d.value : undefined))
+      .filter(Boolean)
+      .sort((a, b) => {
+        const idA = ((a as IPokemon)?.id || 0) as number;
+        const idB = ((b as IPokemon)?.id || 0) as number;
+        return idA - idB;
+      }) as IPokemon[];
+  });
 }
 
 export async function getPokemonsByGeneration(idOrName: string) {

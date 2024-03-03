@@ -30,6 +30,9 @@ export default async function PokemonsPage({
     pokemons = await getPokemonsPaginated(searchParams);
   }
 
+  console.log("pokemons");
+  console.log(pokemons);
+
   return (
     <Suspense fallback="Loading... ">
       <Pokemons
