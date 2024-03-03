@@ -1,4 +1,21 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+        port: "",
+        pathname: "/PokeAPI/sprites/master/sprites/pokemon/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.freepnglogos.com",
+        port: "",
+        pathname: "/uploads/pokemon-symbol-logo-png-31.png",
+      },
+    ],
+  },
+};
 
 export default nextConfig;
