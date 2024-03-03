@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { IPokemon } from "@/core/interfaces/pokemon.model";
+import { IPokemon, IPokemonType } from "@/core/interfaces/pokemon.model";
 import Link from "next/link";
 
 interface PokemonCardProps {
@@ -12,18 +12,30 @@ export const PokemonCard = (props: PokemonCardProps) => {
 
   return (
     <Link href={`/pokemons/${id}`}>
-      <div className="shadow-md p-4 rounded-lg">
-        <p className="text-2xl">{name}</p>
-        <Image
-          alt="pokemon photo"
-          src={sprites.front_default}
-          width={150}
-          height={150}
-        />
-        <p>{generation}</p>
-        {types.map((type: any) => (
-          <span key={type.type.name}>{type.type.name}, </span>
-        ))}
+      <div className="bg-white shadow-md p-4 rounded-lg space-y-5 hover:shadow-xl">
+        <div className="w-full flex justify-center">
+          <Image
+            alt="pokemon photo"
+            src={sprites.front_default}
+            width={150}
+            height={150}
+          />
+        </div>
+        <p className="font-bold text-2xl">
+          {name.charAt(0).toUpperCase() + name.slice(1)}
+        </p>
+        <div className="space-y-2">
+          <p className="text-gray-500">Generation: {generation}</p>
+          <p className="text-gray-500">
+            Types:{" "}
+            {types.map((type: IPokemonType, i: number) => (
+              <span key={type.type.name}>
+                {type.type.name}
+                {i !== types.length - 1 ? ", " : ""}
+              </span>
+            ))}
+          </p>
+        </div>
       </div>
     </Link>
   );

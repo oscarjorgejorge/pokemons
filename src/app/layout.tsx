@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Image from "next/image";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,14 +17,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {/* <header style={{ backgroundColor: "lightblue", padding: "1rem" }}>
-          <p>Header</p>
-        </header> */}
-        {children}
-        {/* <footer style={{ backgroundColor: "ghostwhite", padding: "1rem" }}>
+      <body className={`${inter.className} bg-slate-100 relative`}>
+        <header className="flex items-center space-x-8 bg-secondary-light p-4">
+          <Image
+            alt="pokemon logo"
+            src="https://www.freepnglogos.com/uploads/pokemon-symbol-logo-png-31.png"
+            width={40}
+            height={40}
+          />
+          <p className="text-3xl">Pokemons</p>
+        </header>
+        <div className="m-[24px]">{children}</div>
+        <footer
+          style={{ backgroundColor: "ghostwhite", padding: "1rem" }}
+          className="fixed bottom-0 w-full"
+        >
           <p>Footer</p>
-        </footer> */}
+        </footer>
       </body>
     </html>
   );

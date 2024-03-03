@@ -1,4 +1,4 @@
-export interface ISmallPokemon {
+export interface IElement {
   name: string;
   url: string;
 }

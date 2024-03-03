@@ -1,3 +1,3 @@
 export default function LoadingPokemonsPake() {
-  return <div>Loading pokemons...</div>;
+  return <div>Loading pokemons ...</div>;
 }
