@@ -14,6 +14,12 @@ const nextConfig = {
         port: "",
         pathname: "/uploads/pokemon-symbol-logo-png-31.png",
       },
+      {
+        protocol: "https",
+        hostname: "media.tenor.com",
+        port: "",
+        pathname: "/_3R8EL8_DQYAAAAi/pokeball-pokemon.gif",
+      },
     ],
   },
 };

@@ -7,7 +7,7 @@ import { PokemonCard } from "../shared/PokemonCard";
 import { Search } from "../shared/Search";
 import { Select } from "../shared/Select";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import Image from "next/image";
+import { PokemonCardSkeleton } from "../shared/PokemonCardSkeleton";
 
 interface PokemonsProps {
   count: number;
@@ -23,7 +23,6 @@ export const Pokemons = (props: PokemonsProps) => {
   const [allPokemons, setAllPokemons] = useState<IPokemon[]>(pokemons);
   const [filteredPokemon, setFilteredPokemon] = useState<IPokemon[]>(pokemons);
   const [isLoading, setIsLoading] = useState(false);
-  const [gif, setGif] = useState<string>("");
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -35,10 +34,6 @@ export const Pokemons = (props: PokemonsProps) => {
     setAllPokemons(pokemons);
     setFilteredPokemon(pokemons);
     setIsLoading(false);
-    setGif(
-      pokemons[Math.floor(Math.random() * pokemons.length)].sprites.other
-        .showdown.front_default,
-    );
   }, [pokemons]);
 
   const handleOnInputChange = (search: string) => {
@@ -59,8 +54,6 @@ export const Pokemons = (props: PokemonsProps) => {
     setIsLoading(true);
     replace(`${pathname}?${type}=${value}`);
   };
-
-  console.log({ pathname });
 
   return (
     <div className="space-y-12">
@@ -88,8 +81,12 @@ export const Pokemons = (props: PokemonsProps) => {
         />
       </div>
       {isLoading && (
-        <div className="w-full flex justify-center">
-          <Image alt="pokemon gif" src={gif} height={100} width={100} />
+        <div className="grid grid-cols-1 sm:grid-cols-5 gap-6">
+          {Array(defaultApiParams.limit)
+            .fill(0)
+            .map((_, index) => (
+              <PokemonCardSkeleton key={index} />
+            ))}
         </div>
       )}
       {!isLoading && (

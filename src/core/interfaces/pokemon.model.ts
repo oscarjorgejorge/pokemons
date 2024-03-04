@@ -6,6 +6,15 @@ export interface IPokemonType {
   };
 }
 
+export interface PokemonStat {
+  base_stat: number;
+  effort: number;
+  stat: {
+    name: string;
+    url: string;
+  };
+}
+
 export interface IPokemon {
   id: string;
   name: string;
@@ -21,4 +30,5 @@ export interface IPokemon {
     };
   };
   evolutions: IPokemon[];
+  stats: PokemonStat[];
 }

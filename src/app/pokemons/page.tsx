@@ -1,14 +1,14 @@
 import { Pokemons } from "@/components/Pokemons";
+import { getAllGenerations } from "@/core/api/generations";
 import {
-  getAllGenerations,
   getAllPokemons,
-  getAllTypes,
   getPokemonsByGeneration,
   getPokemonsByType,
   getPokemonsPaginated,
-} from "@/core/api/pokemons/get";
+} from "@/core/api/pokemons";
+
+import { getAllTypes } from "@/core/api/types";
 import { IApiParams } from "@/core/interfaces/api_response";
-import { Suspense } from "react";
 
 export default async function PokemonsPage({
   searchParams,
@@ -30,18 +30,15 @@ export default async function PokemonsPage({
     pokemons = await getPokemonsPaginated(searchParams);
   }
 
-  console.log("pokemons");
-  console.log(pokemons);
-
   return (
-    <Suspense fallback="Loading... ">
-      <Pokemons
-        pokemons={pokemons}
-        count={count}
-        searchParams={searchParams}
-        types={allTypes}
-        generations={allGenerations}
-      />
-    </Suspense>
+    // <Suspense fallback="Loading... ">
+    <Pokemons
+      pokemons={pokemons}
+      count={count}
+      searchParams={searchParams}
+      types={allTypes}
+      generations={allGenerations}
+    />
+    // </Suspense>
   );
 }

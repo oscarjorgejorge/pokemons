@@ -1,10 +1,10 @@
-export interface IType {
+export interface ITypeElement {
   pokemon: {
     name: string;
     url: string;
   };
 }
 
-export interface ITypes {
-  pokemon: IType[];
+export interface IType {
+  pokemon: ITypeElement[];
 }

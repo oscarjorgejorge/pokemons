@@ -1,3 +1,9 @@
+import { PokeBall } from "@/components/shared/PokeBall";
+
 export default function LoadingPokemonPake() {
-  return <div>Loading one pokemon ...</div>;
+  return (
+    <div className="w-full justify-center mt-[100px]">
+      <PokeBall />
+    </div>
+  );
 }
