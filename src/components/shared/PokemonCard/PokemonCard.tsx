@@ -11,17 +11,19 @@ interface PokemonCardProps {
 export const PokemonCard = (props: PokemonCardProps) => {
   const { pokemon } = props;
 
+  const { sprites } = pokemon;
+
+  const slides = [
+    sprites.other.home.front_default,
+    sprites.front_default,
+    sprites.back_default,
+  ];
+
   return (
     <Link href={`/pokemons/${pokemon.id}`}>
       <div className="bg-white shadow-md p-4 rounded-lg space-y-6 hover:shadow-xl">
         <div className="w-full flex justify-center mb-[12px]">
-          <Slider
-            slides={[
-              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/8.png",
-              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/8.png",
-              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png",
-            ]}
-          />
+          <Slider slides={slides} />
         </div>
         <PokemonBasicInfo pokemon={pokemon} />
       </div>

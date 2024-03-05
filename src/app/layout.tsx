@@ -32,7 +32,7 @@ export default function RootLayout({
           </Link>
           <p className="text-3xl">Pokemons</p>
         </header>
-        <main className="m-[24px]">{children}</main>
+        <main className="flex-1 m-[24px]">{children}</main>
         <footer className="bg-slate-200 border border-slate-300 px-4 py-2">
           <p>Project by Oscar Jorge</p>
           <Link

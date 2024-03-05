@@ -33,12 +33,12 @@ export const PokemonEvolutions = (props: PokemonEvolutionsProps) => {
               <div className="flex flex-col items-center">
                 <Image
                   alt={`pokemon ${name} gif`}
-                  src={sprites.front_default}
+                  src={sprites.other.home.front_default}
                   height={150}
                   width={150}
                 />
                 <p className="mt-[8px] font-bold text-2xl">
-                  {name}
+                  {name.charAt(0).toUpperCase() + name.slice(1)}
                   {isOriginalPokemonId && (
                     <span className="text-gray-500 text-lg"> (original)</span>
                   )}
@@ -49,12 +49,12 @@ export const PokemonEvolutions = (props: PokemonEvolutionsProps) => {
             <div key={name} className="flex flex-col items-center">
               <Image
                 alt={`pokemon ${name} gif`}
-                src={sprites.front_default}
+                src={sprites.other.home.front_default}
                 height={150}
                 width={150}
               />
               <p className="mt-[8px] font-bold text-2xl">
-                {name}
+                {name.charAt(0).toUpperCase() + name.slice(1)}
                 <span className="text-gray-500 text-lg"> (current)</span>
               </p>
             </div>

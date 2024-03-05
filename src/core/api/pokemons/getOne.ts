@@ -24,6 +24,7 @@ async function setEvolutions(evolutionChain: IPokemonEvolution) {
         "types",
         "sprites.front_default",
         "sprites.other.showdown.front_default",
+        "sprites.other.home.front_default",
       ]),
     );
     currentEvolution = currentEvolution.evolves_to[0];
@@ -55,7 +56,9 @@ export async function getOnePokemon(url: string) {
         "types",
         "stats",
         "sprites.front_default",
+        "sprites.back_default",
         "sprites.other.showdown.front_default",
+        "sprites.other.home.front_default",
       ]),
       generation,
       evolutions,

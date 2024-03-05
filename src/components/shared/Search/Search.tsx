@@ -25,7 +25,7 @@ export const Search: FC<SearchProps> = (props: SearchProps) => {
   return (
     <div className="flex">
       <input
-        className="w-full px-2 py-1 rounded-sm outline-none ring-2 ring-gray-300 focus-visible:ring-4 focus-visible:ring-primary-light"
+        className="w-full px-2 py-1 rounded-sm outline-none ring-2 ring-gray-100 focus-visible:ring-4 focus-visible:ring-primary-light"
         onChange={handleInputChange}
         value={state}
         placeholder={placeholder}

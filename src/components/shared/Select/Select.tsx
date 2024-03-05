@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC } from "react";
 
 interface SelectProps extends React.ComponentPropsWithoutRef<"select"> {
   options: string[];
@@ -16,18 +16,15 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
     className = "",
     ...selectProps
   } = props;
-  // const [selectedValue, setSelectedValue] = useState<string>("");
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
-    // setSelectedValue(value);
     onValueChange(value);
   };
 
   return (
     <select
-      className={`rounded-md border border-gray-200 py-2 px-4 text-sm ${className}`}
-      // value={selectedValue}
+      className={`bg-white rounded-md py-2 px-4 text-sm outline-none ring-2 ring-gray-100 focus-visible:ring-4 focus-visible:ring-primary-light ${className}`}
       onChange={handleSelectChange}
       {...selectProps}
     >

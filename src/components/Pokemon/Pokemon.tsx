@@ -60,14 +60,7 @@ export const Pokemon = (props: PokemonProps) => {
         />
       </div>
       <div className="border-t border-gray-100" />
-      <Slider
-        slides={[
-          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/8.png",
-          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/8.png",
-          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png",
-        ]}
-      />
-      {/* <PokemonEvolutions originalPokemon={pokemon} evolutions={evolutions} /> */}
+      <PokemonEvolutions originalPokemon={pokemon} evolutions={evolutions} />
     </div>
   );
 };

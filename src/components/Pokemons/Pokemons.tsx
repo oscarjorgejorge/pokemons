@@ -8,6 +8,7 @@ import { Search } from "../shared/Search";
 import { Select } from "../shared/Select";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { PokemonCardSkeleton } from "../shared/PokemonCardSkeleton";
+import { Alert } from "../shared/NotResults";
 
 interface PokemonsProps {
   count: number;
@@ -21,7 +22,8 @@ export const Pokemons = (props: PokemonsProps) => {
   const { count, pokemons, types, generations } = props;
 
   const [allPokemons, setAllPokemons] = useState<IPokemon[]>(pokemons);
-  const [filteredPokemon, setFilteredPokemon] = useState<IPokemon[]>(pokemons);
+  const [filteredPokemons, setFilteredPokemons] =
+    useState<IPokemon[]>(pokemons);
   const [isLoading, setIsLoading] = useState(false);
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -32,14 +34,14 @@ export const Pokemons = (props: PokemonsProps) => {
 
   useEffect(() => {
     setAllPokemons(pokemons);
-    setFilteredPokemon(pokemons);
+    setFilteredPokemons(pokemons);
     setIsLoading(false);
   }, [pokemons]);
 
   const handleOnInputChange = (search: string) => {
-    if (search === "") setFilteredPokemon(allPokemons);
+    if (search === "") setFilteredPokemons(allPokemons);
 
-    setFilteredPokemon(
+    setFilteredPokemons(
       allPokemons.filter((pokemon) => {
         const regex = new RegExp(search, "i");
         return (
@@ -81,7 +83,7 @@ export const Pokemons = (props: PokemonsProps) => {
         />
       </div>
       {isLoading && (
-        <div className="grid grid-cols-1 sm:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-5 gap-6">
           {Array(defaultApiParams.limit)
             .fill(0)
             .map((_, index) => (
@@ -91,11 +93,12 @@ export const Pokemons = (props: PokemonsProps) => {
       )}
       {!isLoading && (
         <div className="grid grid-cols-1 sm:grid-cols-5 gap-6">
-          {filteredPokemon.map((pokemon) => (
+          {filteredPokemons.map((pokemon) => (
             <PokemonCard key={pokemon.id} pokemon={pokemon} />
           ))}
         </div>
       )}
+      {filteredPokemons.length === 0 && <Alert text="Not pokemons found" />}
       <Pagination
         numberOfItems={count}
         currentPage={offset / limit}

@@ -41,7 +41,7 @@ export const Slider = (props: SliderProps) => {
     <div className=" h-[160px] w-full m-auto relative group">
       <div
         style={{ backgroundImage: `url(${slides[currentIndex]})` }}
-        className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
+        className="w-full h-full rounded-2xl duration-500 bg-contain bg-no-repeat bg-center"
       />
       <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[50%] left-2 text-2xl rounded-full p-1 bg-black/20 text-white cursor-pointer">
         <BsChevronCompactLeft onClick={(e) => prevSlide(e)} size={10} />
