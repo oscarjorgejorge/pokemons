@@ -15,6 +15,24 @@ export interface PokemonStat {
   };
 }
 
+export interface IPokemonCard {
+  id: string;
+  name: string;
+  url: string;
+  types: IPokemonType[];
+  generation: string;
+  sprites: {
+    back_default: string;
+    front_default: string;
+    other: {
+      home: {
+        front_default: string;
+      };
+    };
+  };
+  evolutions: { name: string }[];
+}
+
 export interface IPokemon {
   id: string;
   name: string;

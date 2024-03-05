@@ -23,7 +23,6 @@ export default function Home() {
       <div className="flex flex-col items-center space-y-6 sm:p-8">
         <div className="container mx-auto p-2">
           <h1 className="text-3xl font-bold mb-4">Oscar prueba técnica</h1>
-          <h2 className="text-xl text-gray-600 mb-4">Consideraciones</h2>
           <p className="text-gray-600 mb-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
             ullamcorper ipsum eget nibh vestibulum, nec consequat justo
@@ -37,6 +36,7 @@ export default function Home() {
             nec. Fusce sit amet fringilla urna. Nullam non nunc eget elit dictum
             fermentum.
           </p>
+          <h2 className="text-xl text-gray-600 mb-4">Consideraciones</h2>
           <ul className="list-disc list-inside mb-4">
             <li>Primera vez usando Nextjs</li>
             <li>
@@ -58,16 +58,15 @@ export default function Home() {
               mismo problema tengo al filtrar por ciertas generaciones.
             </li>
           </ul>
-          <p className="text-gray-600">
-            Vestibulum tincidunt convallis nisi, nec dictum orci faucibus et.
-            Praesent vitae felis id nisl pulvinar ultrices. Nulla facilisi. Cras
-            vehicula odio id lectus fringilla, in semper quam vestibulum.
-            Vivamus non vestibulum dolor. Nam ut interdum nunc, nec maximus
-            velit. Donec vitae libero commodo, dapibus eros sed, varius est.
-            Vivamus eleifend urna sit amet justo convallis scelerisque. Donec
-            vehicula varius est eget molestie. Sed ac efficitur leo. Fusce
-            ultricies nisl et neque fermentum, non euismod sapien pharetra.
-          </p>
+          <h2 className="text-xl text-gray-600 mb-4">TO DO</h2>
+          <ul className="list-disc list-inside mb-4">
+            <li>
+              Breadcrumb en la página de pokemon o su evolución para mejorar la
+              navegación
+            </li>
+            <li>Reseteo de filtros</li>
+            <li>Lazy load en las imágenes</li>
+          </ul>
         </div>
         <Button onClick={handleClick} text="See pokemons" />
       </div>
