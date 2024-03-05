@@ -1,10 +1,12 @@
-import React from "react";
+import React, { FC } from "react";
 
 interface PokemonCardSkeletonProps {}
 
-export const PokemonCardSkeleton = (props: PokemonCardSkeletonProps) => {
+export const PokemonCardSkeleton: FC<PokemonCardSkeletonProps> = (
+  props: PokemonCardSkeletonProps,
+) => {
   return (
-    <div className="w-full bg-white min-h-[310px] shadow-md p-4 rounded-lg space-y-6">
+    <div className="w-full bg-white min-h-[300px] shadow-md p-4 rounded-lg space-y-6">
       <div className="w-full flex justify-center">
         <div className="size-[130px] bg-slate-300 animate-pulse" />
       </div>

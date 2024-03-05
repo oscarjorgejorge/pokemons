@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { FC } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { IoArrowBack } from "react-icons/io5";
@@ -10,13 +10,12 @@ import { PokemonBasicInfo } from "../shared/PokemonBasicInfo";
 import { StatBar } from "../shared/StatBar";
 import { Button } from "../shared/Button";
 import { PokemonEvolutions } from "../shared/PokemonEvolutions/PokemonEvolutions";
-import { Slider } from "../shared/Slider";
 
 interface PokemonProps {
   pokemon: IPokemon;
 }
 
-export const Pokemon = (props: PokemonProps) => {
+export const Pokemon: FC<PokemonProps> = (props: PokemonProps) => {
   const { pokemon } = props;
 
   const { evolutions, sprites, stats } = pokemon;
@@ -28,7 +27,7 @@ export const Pokemon = (props: PokemonProps) => {
   };
 
   return (
-    <div className="bg-white shadow-md p-[16px] rounded-md space-y-8 relative">
+    <div className="bg-white shadow-md p-[16px] rounded-md space-y-6 relative">
       <Image
         alt="pokemon page image"
         src="https://i.pinimg.com/originals/34/c1/e5/34c1e5d371d64a581b1902ec5c4509f4.png"

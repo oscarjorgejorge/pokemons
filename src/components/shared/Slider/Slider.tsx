@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 
@@ -8,7 +8,7 @@ interface SliderProps {
   slides: string[];
 }
 
-export const Slider = (props: SliderProps) => {
+export const Slider: FC<SliderProps> = (props: SliderProps) => {
   const { slides } = props;
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -38,7 +38,7 @@ export const Slider = (props: SliderProps) => {
   };
 
   return (
-    <div className=" h-[160px] w-full m-auto relative group">
+    <div className=" h-[150px] w-full m-auto relative group">
       <div
         style={{ backgroundImage: `url(${slides[currentIndex]})` }}
         className="w-full h-full rounded-2xl duration-500 bg-contain bg-no-repeat bg-center"

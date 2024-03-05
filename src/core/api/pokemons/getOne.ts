@@ -1,12 +1,15 @@
 import _ from "lodash";
 import Http from "@/utils/http";
-import { IPokemon } from "@/core/interfaces/pokemon.model";
+import { IPokemon, IPokemonCard } from "@/core/interfaces/pokemon.model";
 import { getPokemonAbility } from "../abilities";
 import { getPokemonSpecie } from "../pokemon_species";
 import { getPokemonEvolutionChain } from "../evolutions";
 import { IPokemonEvolution } from "@/core/interfaces/pokemon_evolution.model";
 
-async function setEvolutions(evolutionChain: IPokemonEvolution) {
+async function setEvolutions(
+  evolutionChain: IPokemonEvolution,
+  fields: string[],
+) {
   const evolutions = [];
   let currentEvolution = evolutionChain.chain;
 
@@ -16,28 +19,16 @@ async function setEvolutions(evolutionChain: IPokemonEvolution) {
       `/pokemon/${evolutionName}`,
     );
 
-    evolutions.push(
-      _.pick(pokemonEvolution, [
-        "id",
-        "name",
-        "stats",
-        "types",
-        "sprites.front_default",
-        "sprites.other.showdown.front_default",
-        "sprites.other.home.front_default",
-      ]),
-    );
+    evolutions.push(_.pick(pokemonEvolution, fields));
     currentEvolution = currentEvolution.evolves_to[0];
   }
 
   return evolutions;
 }
 
-export async function getOnePokemon(url: string) {
+async function getPokemon(url: string, fields: string[]) {
   try {
-    const { data: pokemon } = await Http.get<
-      Partial<IPokemon> & { id: string }
-    >(url);
+    const { data: pokemon } = await Http.get(url);
 
     const generation = await getPokemonAbility(pokemon.id);
 
@@ -47,23 +38,42 @@ export async function getOnePokemon(url: string) {
       pokemonSpecies.evolution_chain.url,
     );
 
-    const evolutions = await setEvolutions(evolutionChain);
+    const evolutions = await setEvolutions(evolutionChain, fields);
 
-    return {
-      ..._.pick(pokemon, [
-        "id",
-        "name",
-        "types",
-        "stats",
-        "sprites.front_default",
-        "sprites.back_default",
-        "sprites.other.showdown.front_default",
-        "sprites.other.home.front_default",
-      ]),
+    const data = {
+      ..._.pick(pokemon, fields),
       generation,
       evolutions,
-    } as IPokemon;
+    };
+
+    return data;
   } catch (error) {
     throw new Error("Error getting pokemon");
   }
+}
+
+export async function getOnePokemonCard(url: string) {
+  const fields = [
+    "id",
+    "name",
+    "types",
+    "sprites.front_default",
+    "sprites.back_default",
+    "sprites.other.home.front_default",
+  ];
+
+  return getPokemon(url, fields) as Promise<IPokemonCard>;
+}
+
+export async function getOnePokemon(url: string) {
+  const fields = [
+    "id",
+    "name",
+    "types",
+    "stats",
+    "sprites.other.showdown.front_default",
+    "sprites.other.home.front_default",
+  ];
+
+  return getPokemon(url, fields) as Promise<IPokemon>;
 }

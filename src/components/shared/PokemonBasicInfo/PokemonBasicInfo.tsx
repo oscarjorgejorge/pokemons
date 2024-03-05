@@ -1,11 +1,17 @@
-import { IPokemon, IPokemonType } from "@/core/interfaces/pokemon.model";
-import React from "react";
+import React, { FC } from "react";
+import {
+  IPokemon,
+  IPokemonCard,
+  IPokemonType,
+} from "@/core/interfaces/pokemon.model";
 
 interface PokemonBasicInfoProps {
-  pokemon: IPokemon;
+  pokemon: IPokemonCard | IPokemon;
 }
 
-export const PokemonBasicInfo = (props: PokemonBasicInfoProps) => {
+export const PokemonBasicInfo: FC<PokemonBasicInfoProps> = (
+  props: PokemonBasicInfoProps,
+) => {
   const { name, types, generation } = props.pokemon;
   return (
     <div>

@@ -24,33 +24,31 @@ export default function Home() {
         <div className="container mx-auto p-2">
           <h1 className="text-3xl font-bold mb-4">Oscar prueba técnica</h1>
           <p className="text-gray-600 mb-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-            ullamcorper ipsum eget nibh vestibulum, nec consequat justo
-            pulvinar. Donec id tempor nisi, vel finibus elit. Nullam auctor
-            ultricies magna vitae fermentum. Nam nec placerat libero. Ut
-            sollicitudin, libero ac fermentum aliquam, justo velit posuere
-            turpis, eget molestie velit quam vel lacus. In eget lobortis felis.
-            Vestibulum suscipit neque eget lacus pellentesque, in convallis enim
-            condimentum. Vivamus quis nulla id enim faucibus hendrerit vel nec
-            elit. Cras molestie tristique justo, nec ullamcorper tellus mollis
-            nec. Fusce sit amet fringilla urna. Nullam non nunc eget elit dictum
-            fermentum.
+            Los primeros días cuando estaba preparando la prueba estaba
+            aprendiendo sobre Nextjs es algo que ya queria hacer hace tiempo y
+            esta fue la excusa perfecta para no retrasarlo más. Durante la
+            prueba he probado a hacer cosas distintas: dinamic routes,
+            interceptación de rutas, rutas paralelas, la verdad que Nextjs
+            router esta genial. En mis anteriores experiencias desarrollando
+            habia utilizado MUI para crear componentes, pero ultimamente estoy
+            prefiriendo crear mis propios componentes ya que son fáciles de
+            crear. Me he divertido haciendo esta pequeña prueba que os comparto.
           </p>
-          <h2 className="text-xl text-gray-600 mb-4">Consideraciones</h2>
+          <h2 className="text-xl text-gray-600 my-4">Consideraciones</h2>
           <ul className="list-disc list-inside mb-4">
-            <li>Primera vez usando Nextjs</li>
+            <li>Primera vez usando Nextjs.</li>
             <li>
               Probé a gestionar los &apos;loadings&apos;, tambien con el
               componente Suspense de React, pero no me funcionó después de la
               primera llamada en el listado de pokemons, cuando usas la
-              paginación
+              paginación.
             </li>
             <li>
               Como otra alternativa a la implementación de las evoluciones,
               podría ser interceptando las rutas, y así no perder el contexto
               del pokemon inicial al que se navegó. Pero como en las
               especificaciones decía navegar a una página de pokemon igual, lo
-              implemente de esta forma que me resultó más facil
+              implemente de esta forma que me resultó más fácil.
             </li>
             <li>
               En la páginación a partir de la página 31, no se porqué no me
@@ -58,14 +56,29 @@ export default function Home() {
               mismo problema tengo al filtrar por ciertas generaciones.
             </li>
           </ul>
-          <h2 className="text-xl text-gray-600 mb-4">TO DO</h2>
+          <h2 className="text-xl text-gray-600 mb-4">TO DO - ideas</h2>
           <ul className="list-disc list-inside mb-4">
             <li>
-              Breadcrumb en la página de pokemon o su evolución para mejorar la
-              navegación
+              Homogenizar un poco el uso de clases utilizando Tailwindcss, con
+              más configuraciones generales. También con algunas
+              refactorizaciones de código que hice es posible que se me hayan
+              quedado clases que ya no se necesitan o algun html tag
+              innecesario.
             </li>
-            <li>Reseteo de filtros</li>
-            <li>Lazy load en las imágenes</li>
+            <li>
+              Breadcrumb en la página de pokemon o su evolución para mejorar la
+              navegación.
+            </li>
+            <li>Reseteo de filtros.</li>
+            <li>Skeleton selectores de filtro y buscador por nombre.</li>
+            <li>
+              Quitar paginación si vienen todos los pokemon (cuando aplico un
+              filtro por tipo o generación).
+            </li>
+            <li>
+              Lazy load en las imágenes, poniendo una imagen como placeholder si
+              no esta cargada la otra imagen.
+            </li>
           </ul>
         </div>
         <Button onClick={handleClick} text="See pokemons" />

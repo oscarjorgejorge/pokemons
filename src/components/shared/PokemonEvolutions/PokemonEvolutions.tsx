@@ -1,22 +1,23 @@
 "use client";
 
-import React from "react";
-import { IPokemon } from "@/core/interfaces/pokemon.model";
+import React, { FC } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { IPokemon } from "@/core/interfaces/pokemon.model";
 
 interface PokemonEvolutionsProps {
   evolutions: IPokemon[];
   originalPokemon: IPokemon;
 }
 
-export const PokemonEvolutions = (props: PokemonEvolutionsProps) => {
+export const PokemonEvolutions: FC<PokemonEvolutionsProps> = (
+  props: PokemonEvolutionsProps,
+) => {
+  const { evolutions, originalPokemon } = props;
   const pathname = usePathname().split("/");
   const originalPokemonId =
     pathname.length === 4 && pathname[pathname.length - 2];
-
-  const { evolutions, originalPokemon } = props;
 
   const { id, name: currentPokemonName } = originalPokemon;
   return (

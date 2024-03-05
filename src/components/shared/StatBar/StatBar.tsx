@@ -1,11 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
 
 interface StatBarProps {
   statName: string;
   value: number;
 }
 
-export const StatBar = (props: StatBarProps) => {
+export const StatBar: FC<StatBarProps> = (props: StatBarProps) => {
   const { statName, value } = props;
 
   const barWidth = `${(value / 255) * 100}%`;

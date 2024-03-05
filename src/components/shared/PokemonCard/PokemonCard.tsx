@@ -1,14 +1,14 @@
-import React from "react";
+import React, { FC } from "react";
 import Link from "next/link";
-import { IPokemon } from "@/core/interfaces/pokemon.model";
+import { IPokemonCard } from "@/core/interfaces/pokemon.model";
 import { PokemonBasicInfo } from "../PokemonBasicInfo";
 import { Slider } from "../Slider";
 
 interface PokemonCardProps {
-  pokemon: IPokemon;
+  pokemon: IPokemonCard;
 }
 
-export const PokemonCard = (props: PokemonCardProps) => {
+export const PokemonCard: FC<PokemonCardProps> = (props: PokemonCardProps) => {
   const { pokemon } = props;
 
   const { sprites } = pokemon;

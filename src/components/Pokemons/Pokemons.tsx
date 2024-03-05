@@ -1,7 +1,7 @@
 "use client";
 import { IApiParams, defaultApiParams } from "@/core/interfaces/api_response";
-import { IPokemon } from "@/core/interfaces/pokemon.model";
-import React, { useEffect, useState } from "react";
+import { IPokemonCard } from "@/core/interfaces/pokemon.model";
+import React, { FC, useEffect, useState } from "react";
 import { Pagination } from "../shared/Pagination";
 import { PokemonCard } from "../shared/PokemonCard";
 import { Search } from "../shared/Search";
@@ -13,17 +13,17 @@ import { Alert } from "../shared/NotResults";
 interface PokemonsProps {
   count: number;
   searchParams: IApiParams;
-  pokemons: IPokemon[];
+  pokemons: IPokemonCard[];
   types: string[];
   generations: string[];
 }
 
-export const Pokemons = (props: PokemonsProps) => {
+export const Pokemons: FC<PokemonsProps> = (props: PokemonsProps) => {
   const { count, pokemons, types, generations } = props;
 
-  const [allPokemons, setAllPokemons] = useState<IPokemon[]>(pokemons);
+  const [allPokemons, setAllPokemons] = useState<IPokemonCard[]>(pokemons);
   const [filteredPokemons, setFilteredPokemons] =
-    useState<IPokemon[]>(pokemons);
+    useState<IPokemonCard[]>(pokemons);
   const [isLoading, setIsLoading] = useState(false);
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -58,7 +58,7 @@ export const Pokemons = (props: PokemonsProps) => {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       <div className="flex flex-col space-y-4 space-x-0 sm:flex-row sm:space-x-10 sm:space-y-0">
         <div>
           <Select

@@ -1,6 +1,9 @@
+import { FC } from "react";
 import Image from "next/image";
 
-export function PokeBall() {
+interface PokeBallProps {}
+
+export const PokeBall: FC<PokeBallProps> = (props: PokeBallProps) => {
   return (
     <Image
       alt="pokeball"
@@ -9,4 +12,4 @@ export function PokeBall() {
       height={600}
     />
   );
-}
+};
