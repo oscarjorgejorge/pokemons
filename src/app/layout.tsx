@@ -18,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-slate-100 relative`}>
+      <body
+        className={`${inter.className} bg-slate-100 min-h-screen flex flex-col justify-between`}
+      >
         <header className="flex items-center space-x-8 bg-secondary-light p-4">
           <Link href="/">
             <Image
@@ -30,11 +32,8 @@ export default function RootLayout({
           </Link>
           <p className="text-3xl">Pokemons</p>
         </header>
-        <div className="m-[24px]">{children}</div>
-        <footer
-          style={{ backgroundColor: "ghostwhite", padding: "1rem" }}
-          className="fixed bottom-0 w-full"
-        >
+        <main className="m-[24px]">{children}</main>
+        <footer className="bg-slate-200 border border-slate-300 px-4 py-2">
           <p>Project by Oscar Jorge</p>
           <Link
             href="https://pokeapi.co/"

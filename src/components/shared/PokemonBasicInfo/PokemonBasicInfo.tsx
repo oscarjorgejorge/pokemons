@@ -8,8 +8,8 @@ interface PokemonBasicInfoProps {
 export const PokemonBasicInfo = (props: PokemonBasicInfoProps) => {
   const { name, types, generation } = props.pokemon;
   return (
-    <>
-      <p className="font-bold text-2xl">
+    <div>
+      <p className="font-bold text-2xl mb-[6px]">
         {name.charAt(0).toUpperCase() + name.slice(1)}
       </p>
       <div className="space-y-2">
@@ -24,6 +24,6 @@ export const PokemonBasicInfo = (props: PokemonBasicInfoProps) => {
           ))}
         </p>
       </div>
-    </>
+    </div>
   );
 };

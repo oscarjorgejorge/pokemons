@@ -6,7 +6,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "raw.githubusercontent.com",
         port: "",
-        pathname: "/PokeAPI/sprites/master/sprites/**",
+        pathname: "/PokeAPI/**",
       },
       {
         protocol: "https",
@@ -19,6 +19,12 @@ const nextConfig = {
         hostname: "media.tenor.com",
         port: "",
         pathname: "/_3R8EL8_DQYAAAAi/pokeball-pokemon.gif",
+      },
+      {
+        protocol: "https",
+        hostname: "i.pinimg.com",
+        port: "",
+        pathname: "/originals/34/c1/e5/34c1e5d371d64a581b1902ec5c4509f4.png",
       },
     ],
   },

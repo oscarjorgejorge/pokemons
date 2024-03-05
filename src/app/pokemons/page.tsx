@@ -31,7 +31,6 @@ export default async function PokemonsPage({
   }
 
   return (
-    // <Suspense fallback="Loading... ">
     <Pokemons
       pokemons={pokemons}
       count={count}
@@ -39,6 +38,5 @@ export default async function PokemonsPage({
       types={allTypes}
       generations={allGenerations}
     />
-    // </Suspense>
   );
 }

@@ -56,7 +56,7 @@ export const Pokemons = (props: PokemonsProps) => {
   };
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-8">
       <div className="flex flex-col space-y-4 space-x-0 sm:flex-row sm:space-x-10 sm:space-y-0">
         <div>
           <Select
@@ -81,7 +81,7 @@ export const Pokemons = (props: PokemonsProps) => {
         />
       </div>
       {isLoading && (
-        <div className="grid grid-cols-1 sm:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-5 gap-4">
           {Array(defaultApiParams.limit)
             .fill(0)
             .map((_, index) => (
